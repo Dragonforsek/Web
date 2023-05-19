@@ -1,0 +1,44 @@
+<!DOCTUPE html>
+<html dir="ltr">
+<head>
+<title>Джава скрипт</title>
+<link rel=stylesheet href="screen_style.css" type="text/css">
+</head>
+<body>
+<form>
+  <label for="weeks">Кількість тижнів, що минули з останнього 1 вересня:</label>
+  <input type="text" id="weeks" name="weeks">
+  <br>
+  <button type="button" onclick="setWeeks()">OK</button>
+  <button type="reset">ОТМЕНА</button>
+</form>
+  <ul>
+    <li><a href="#" onclick="showSelectedValue(event)">Елемент 1</a></li>
+    <li><a href="#" onclick="showSelectedValue(event)">Елемент 2</a></li>
+    <li><a href="#" onclick="showSelectedValue(event)">Елемент 3</a></li>
+  </ul>
+<script src="lr4.js"></script>
+<script>
+  function setWeeks() {
+    var today = new Date();
+    var september1st = new Date(today.getFullYear(), 8, 1); // Вересень (місяць з нульовим індексом)
+    
+    // Перевірка, чи поточна дата перед 1 вересня
+    if (today.getMonth() < 8 || (today.getMonth() === 8 && today.getDate() < 1)) {
+      september1st.setFullYear(today.getFullYear() - 1); // Попередній рік
+    }
+    
+    var timeDiff = Math.abs(today.getTime() - september1st.getTime());
+    var weeks = Math.floor(timeDiff / (1000 * 3600 * 24 * 7)); // Кількість мілісекунд у тижні: 1000 мс * 3600 с * 24 год * 7 днів
+
+    document.getElementById("weeks").value = weeks;
+  }
+    function showSelectedValue(event) {
+      event.preventDefault();
+      var selectedElement = event.target;
+      var selectedValue = selectedElement.textContent;
+      alert("Обраний елемент списку: " + selectedValue);
+    }
+</script>
+</body>
+</html>

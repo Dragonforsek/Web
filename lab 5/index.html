@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+<title>Знак зодіаку - Козоріг</title>
+<link rel="stylesheet" href="screen_style.css" type="text/css">
+<script src="script.js"></script>
+<script>
+    function getCurrentDate() {
+      var currentDate = new Date();
+      var dateElement = document.getElementById("currentDate");
+      dateElement.innerHTML = currentDate.toDateString();
+    }
+
+    function displayCurrentTime() {
+      var currentTimeElement = document.getElementById("currentTime");
+      var dateElement = document.getElementById("currentDate");
+
+      dateElement.onmouseover = function() {
+        var currentTime = new Date();
+        currentTimeElement.innerHTML = currentTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+      };
+
+      dateElement.onmouseout = function() {
+        currentTimeElement.innerHTML = "";
+      };
+    }
+
+    window.onload = function() {
+      getCurrentDate();
+      displayCurrentTime();
+    };
+  </script>
+<style>
+  .logo-image {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-image img {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .logo-image:hover img {
+    opacity: 0;
+  }
+
+  .logo-image .highlight-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .logo-image:hover .highlight-image {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<div align="center">
+  <h2>Козорі́г</h2><br>
+  <a href="text.html">Опис</a><br>
+  <a href="table.html">Дати</a><br>
+  <a href="picture.html">Малюнок</a><br>
+  <a href="JavaScript.html">Скрипт</a>
+</div>
+<div class="logo-image">
+  <img src="picture/kozerog.png" alt="Логотип" width="320" height="320">
+  <img class="highlight-image" src="picture/kozerog2.png" alt="Виділене зображення" width="320" height="320">
+</div>
+<div id="currentDate"></div>
+<div id="currentTime"></div>
+</body>
+</html>
